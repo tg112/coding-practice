@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/number-of-employees-who-met-the-target/description/
+ 
 class Solution(object):
     def numberOfEmployeesWhoMetTarget(self, hours, target):
         """
