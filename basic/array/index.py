@@ -1,7 +1,7 @@
 from typing import List
 
-# Not solved: 1, 7, 22, 23, 24, 28
-# Not efficient: 8, 19
+# Not solved: 1, 7, 22, 23, 28
+# Not efficient: 8, 19, 24
 
 # 1929. Concatenation of Array
 class Solution:
@@ -228,3 +228,14 @@ class Solution:
             if mat == target:
                 return True
         return False
+
+# 53. Maximum Subarray
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_subarray = float("-inf")
+        for i in range(len(nums)):
+            current = 0
+            for j in range(i, len(nums)):
+                current += nums[j]
+                max_subarray = max(max_subarray, current)
+        return max_subarray
