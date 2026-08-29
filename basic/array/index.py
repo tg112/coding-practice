@@ -1,7 +1,7 @@
 from typing import List
 
-# Not solved: 1, 7, 19, 20, 22, 23, 24, 28
-# Not efficient: 8
+# Not solved: 1, 7, 20, 22, 23, 24, 28
+# Not efficient: 8, 19
 
 # 1929. Concatenation of Array
 class Solution:
@@ -176,3 +176,25 @@ class Solution:
                 nums[target_index] = nums[i]
                 target_index += 1
         return target_index
+
+# 1854. Maximum Population Year
+class Solution:
+    def maximumPopulation(self, logs: List[List[int]]) -> int:
+
+        population = {}
+
+        for birth, death in logs:
+            for year in range(birth, death):
+                population[year] = population.get(year, 0) + 1
+
+        maximum = 0
+        ans = float("inf")
+
+        for year in population:
+            if population[year] > maximum:
+                maximum = population[year]
+                ans = year
+            elif population[year] == maximum:
+                ans = min(ans, year)
+
+        return ans
