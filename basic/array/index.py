@@ -1,6 +1,6 @@
 from typing import List
 
-# Not solved: 1, 7, 20, 22, 23, 24, 28
+# Not solved: 1, 7, 22, 23, 24, 28
 # Not efficient: 8, 19
 
 # 1929. Concatenation of Array
@@ -177,7 +177,7 @@ class Solution:
                 target_index += 1
         return target_index
 
-# 1854. Maximum Population Year
+# 1854. Maximum Population Year (ref: https://leetcode.com/problems/rotate-image/)
 class Solution:
     def maximumPopulation(self, logs: List[List[int]]) -> int:
 
@@ -198,3 +198,33 @@ class Solution:
                 ans = min(ans, year)
 
         return ans
+
+# 1886. Determine Whether Matrix Can Be Obtained By Rotation
+class Solution:
+    def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
+        rows = len(mat)
+        # Rotate the matrix at most 4 times. (0°, 90°, 180°, and 270°)
+        for _ in range(4):
+            # Only need to process the top half of the matrix.
+            for i in range(rows // 2):
+                # (rows + 1) // 2 handles both even and odd-sized matrices.
+                for j in range((rows + 1) // 2):
+                    # (i, j)                     -> top-left
+                    # (rows-1-j, i)              -> bottom-left
+                    # (rows-1-i, rows-1-j)       -> bottom-right
+                    # (j, rows-1-i)              -> top-right
+                    (
+                        mat[i][j],
+                        mat[rows-1-j][i],
+                        mat[rows-1-i][rows-1-j],
+                        mat[j][rows-1-i]
+                    ) = (
+                        mat[rows-1-j][i],
+                        mat[rows-1-i][rows-1-j],
+                        mat[j][rows-1-i],
+                        mat[i][j]
+                    )
+
+            if mat == target:
+                return True
+        return False
