@@ -239,3 +239,16 @@ class Solution:
                 current += nums[j]
                 max_subarray = max(max_subarray, current)
         return max_subarray
+
+# 1217. Minimum Cost to Move Chips to The Same Position
+class Solution:
+    def minCostToMoveChips(self, position: List[int]) -> int:
+        even_nums = 0
+        odd_nums = 0
+
+        for num in position:
+            if num % 2 == 0:
+                even_nums += 1
+            else:
+                odd_nums += 1
+        return min(even_nums, odd_nums)
